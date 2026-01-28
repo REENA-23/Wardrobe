@@ -1,6 +1,6 @@
 import { FiX } from "react-icons/fi";
 import ProductCard from "../home-pages/ProductCard"; 
-// adjust path if your ProductCard is elsewhere
+
 
 export default function WishlistDrawer({ onClose }) {
   return (

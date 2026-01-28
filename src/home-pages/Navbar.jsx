@@ -47,7 +47,7 @@ export default function Navbar() {
             {/* SEARCH */}
             <button
               onClick={() => setOpenSearch(true)}
-              className="w-[24px] h-[24px] flex items-center justify-center"
+              className="cursor-pointer w-[24px] h-[24px] flex items-center justify-center"
             >
               <FiSearch size={24} />
             </button>
@@ -55,20 +55,23 @@ export default function Navbar() {
             {/* WISHLIST */}
             <button
               onClick={() => setOpenWishlist(true)}
-              className="hidden sm:flex w-[24px] h-[24px] items-center justify-center"
+              className="cursor-pointer hidden sm:flex w-[24px] h-[24px] items-center justify-center"
             >
               <FiHeart size={24} />
             </button>
 
             {/* CART */}
-            <button className="w-[24px] h-[24px] flex items-center justify-center">
+            <Link
+              to="/cart"
+              className="cursor-pointer w-[24px] h-[24px] flex items-center justify-center"
+            >
               <FiShoppingCart size={24} />
-            </button>
+            </Link>
 
             {/* USER */}
             <button
               onClick={() => setOpenLogin(true)}
-              className="w-[24px] h-[24px] flex items-center justify-center"
+              className="cursor-pointer w-[24px] h-[24px] flex items-center justify-center"
             >
               <FiUser size={24} />
             </button>
@@ -126,7 +129,6 @@ export default function Navbar() {
       )}
 
       {openLogin && <LoginModal onClose={() => setOpenLogin(false)} />}
-
     </>
   );
 }
