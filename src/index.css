@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Salsa&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=M+PLUS+1p:wght@300;400;500;700&display=swap');
+
 @import "tailwindcss";
 
 @layer base {
@@ -6,6 +9,19 @@
     font-family: "Poppins", sans-serif;
   }
 }
+
+.font-salsa {
+  font-family: "Salsa", cursive;
+}
+
+.font-aboreto {
+  font-family: 'Aboreto', serif;
+}
+
+.font-mplus {
+  font-family: 'M PLUS 1p', sans-serif;
+}
+
 
 .input {
   @apply w-full px-4 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-orange-500;

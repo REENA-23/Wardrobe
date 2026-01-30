@@ -9,12 +9,12 @@ export default function SearchOverlay({ onClose }) {
     <>
       {/* BLUR BACKDROP */}
       <div
-        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+        className="fixed inset-0 bg-black/10 backdrop-blur-s z-40"
         onClick={onClose}
       />
 
       {/* SEARCH BAR */}
-      <div className="fixed top-24 md:top-32 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-[700px]">
+      <div className="fixed top-24 md:top-40 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-[700px]">
         <div
           className={`flex items-center gap-3 px-5 h-[56px] md:h-[60px]
           rounded-full bg-white transition-all
