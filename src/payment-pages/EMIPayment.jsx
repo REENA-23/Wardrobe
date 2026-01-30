@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { IoChevronBack } from "react-icons/io5";
 
-export default function CardPayment() {
+export default function EMIPayment() {
   const navigate = useNavigate();
 
   const inputBase =
@@ -38,22 +38,20 @@ export default function CardPayment() {
         >
           <IoChevronBack />
         </button>
-        <h3 className="text-base font-semibold">
-          Credit Card or Debit Card
-        </h3>
+        <h3 className="text-base font-semibold">EMI</h3>
       </div>
 
       {/* FORM */}
       <div className="space-y-4">
 
-        {/* CARD NUMBER — SAME AS EMI */}
+        {/* CARD NUMBER — 70% */}
         <input
           type="text"
           placeholder="Card Number"
           className={`${inputBase} w-[80%]`}
         />
 
-        {/* SECOND ROW — EXACT STRUCTURE */}
+        {/* SECOND ROW */}
         <div className="flex items-center justify-between">
 
           {/* INPUTS */}

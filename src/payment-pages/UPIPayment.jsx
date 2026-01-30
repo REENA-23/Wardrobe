@@ -13,17 +13,24 @@ export default function UPIPayment() {
 
   return (
     <div className="bg-white rounded-xl shadow-sm p-6">
+      
       {/* DELIVERY INFO */}
       <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 flex justify-between items-start mb-6">
         <div>
-          <p className="text-sm font-medium">Delivering to Dhara Keshwala</p>
+          <p className="text-sm font-medium">
+            Delivering to Dhara Keshwala
+          </p>
           <p className="text-xs text-gray-600 mt-1">
-            Lorem ipsum dolor sit amet, lorem ipsum, PORBANDAR, GUJARAT, 360579,
-            India
+            Lorem ipsum dolor sit amet, lorem ipsum,
+            PORBANDAR, GUJARAT, 360579, India
           </p>
         </div>
 
-        <button className="text-sm underline text-gray-700 hover:text-orange-500">
+        {/* ✅ FIXED */}
+        <button
+          onClick={() => navigate("/payment")}
+          className="text-sm underline text-gray-700 hover:text-orange-500"
+        >
           Edit Address
         </button>
       </div>
@@ -36,12 +43,12 @@ export default function UPIPayment() {
         >
           <IoChevronBack />
         </button>
-
         <h3 className="text-base font-semibold">UPI</h3>
       </div>
 
       <div className="space-y-4 pb-70">
-        {/* GOOGLE PAY ROW */}
+
+        {/* GOOGLE PAY */}
         <div className="flex items-center gap-4">
           <button
             onClick={() => setSelectedMethod("gpay")}
@@ -62,13 +69,11 @@ export default function UPIPayment() {
           )}
         </div>
 
-        {/* ADD / ENTER UPI ID ROW */}
+        {/* ADD / ENTER UPI */}
         <div className="flex items-center gap-4">
           {selectedMethod === "upi" ? (
             <>
-              <div
-                className={`${baseBox} flex-1 border-orange-500 bg-orange-50`}
-              >
+              <div className={`${baseBox} flex-1 border-orange-500 bg-orange-50`}>
                 <input
                   type="text"
                   placeholder="Enter your UPI ID"
@@ -92,6 +97,7 @@ export default function UPIPayment() {
             </button>
           )}
         </div>
+
       </div>
     </div>
   );

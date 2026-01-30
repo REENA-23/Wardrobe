@@ -10,3 +10,5 @@
 .input {
   @apply w-full px-4 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-orange-500;
 }
+
+

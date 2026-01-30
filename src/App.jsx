@@ -44,6 +44,8 @@ export default function App() {
       <Route path="/payment-method" element={<PaymentMethodPage />} />
       <Route path="/payment-method/upi" element={<PaymentMethodPage />} />
       <Route path="/payment-method/card" element={<PaymentMethodPage />} />
+      <Route path="/payment-method/emi" element={<PaymentMethodPage />} />
+      <Route path="/payment-method/cod" element={<PaymentMethodPage />} />
     </Routes>
   );
 }

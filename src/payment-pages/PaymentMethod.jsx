@@ -6,35 +6,31 @@ export default function PaymentMethod() {
   const baseButton =
     "h-[45px] border rounded-lg text-sm text-left px-4 transition";
 
-  const hoverStyle =
-    "hover:border-orange-500 hover:bg-orange-50";
+  const hoverStyle = "hover:border-orange-500 hover:bg-orange-50";
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6 pb-76">
-
+    <div className="bg-white rounded-xl shadow-sm p-6 pb-78">
       {/* DELIVERY INFO */}
       <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 flex justify-between items-start mb-6">
         <div>
-          <p className="text-sm font-medium">
-            Delivering to Dhara Keshwala
-          </p>
+          <p className="text-sm font-medium">Delivering to Dhara Keshwala</p>
           <p className="text-xs text-gray-600 mt-1">
-            Lorem ipsum dolor sit amet, lorem ipsum,
-            PORBANDAR, GUJARAT, 360579, India
+            Lorem ipsum dolor sit amet, lorem ipsum, PORBANDAR, GUJARAT, 360579,
+            India
           </p>
         </div>
 
-        <button className="text-sm underline text-gray-700 hover:text-orange-500">
+        <button
+          onClick={() => navigate("/payment")}
+          className="text-sm underline text-gray-700 hover:text-orange-500"
+        >
           Edit Address
         </button>
       </div>
 
-      <h3 className="text-base font-semibold mb-4">
-        Choose Payment Method
-      </h3>
+      <h3 className="text-base font-semibold mb-4">Choose Payment Method</h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
         {/* UPI */}
         <button
           onClick={() => navigate("/payment-method/upi")}
@@ -53,6 +49,7 @@ export default function PaymentMethod() {
 
         {/* EMI */}
         <button
+          onClick={() => navigate("/payment-method/emi")}
           className={`${baseButton} border-gray-200 ${hoverStyle}`}
         >
           EMI
@@ -60,11 +57,11 @@ export default function PaymentMethod() {
 
         {/* COD */}
         <button
+          onClick={() => navigate("/payment-method/cod")}
           className={`${baseButton} border-gray-200 ${hoverStyle}`}
         >
           Cash on Delivery
         </button>
-
       </div>
     </div>
   );

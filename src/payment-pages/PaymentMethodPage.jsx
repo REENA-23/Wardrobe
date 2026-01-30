@@ -5,19 +5,24 @@ import PaymentSummary from "../cart-pages/PaymentSummary";
 import PaymentMethod from "./PaymentMethod";
 import UPIPayment from "./UPIPayment";
 import CardPayment from "./CardPayment";
+import EMIPayment from "./EMIPayment";
+import CashOnDelivery from "./CashOnDelivery";
 import Footer from "../home-pages/Footer";
 
 export default function PaymentMethodPage() {
-  const location = useLocation();
-  const path = location.pathname;
+  const { pathname } = useLocation();
 
-  const isUpiPage = path === "/payment-method/upi";
-  const isCardPage = path === "/payment-method/card";
+  const isUpiPage = pathname === "/payment-method/upi";
+  const isCardPage = pathname === "/payment-method/card";
+  const isEmiPage = pathname === "/payment-method/emi";
+  const isCodPage = pathname === "/payment-method/cod";
 
   return (
     <>
+      {/* NAVBAR */}
       <CartNavbar />
 
+      {/* PAGE CONTAINER */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
         <p className="text-sm text-gray-500 mb-4">
           Home / Add to cart
@@ -25,14 +30,18 @@ export default function PaymentMethodPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* LEFT */}
+          {/* LEFT SECTION */}
           <div className="lg:col-span-2">
-            {!isUpiPage && !isCardPage && <PaymentMethod />}
+            {!isUpiPage && !isCardPage && !isEmiPage && !isCodPage && (
+              <PaymentMethod />
+            )}
             {isUpiPage && <UPIPayment />}
             {isCardPage && <CardPayment />}
+            {isEmiPage && <EMIPayment />}
+            {isCodPage && <CashOnDelivery />}
           </div>
 
-          {/* RIGHT */}
+          {/* RIGHT SECTION */}
           <div>
             <PaymentSummary />
           </div>
@@ -40,6 +49,7 @@ export default function PaymentMethodPage() {
         </div>
       </div>
 
+      {/* FOOTER */}
       <Footer />
     </>
   );
