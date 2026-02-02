@@ -1,6 +1,6 @@
 export default function TopOfferBar() {
   const Item = () => (
-    <span className="flex items-center whitespace-nowrap text-sm sm:text-base">
+    <span className="pb-10 pt-10 flex items-center whitespace-nowrap text-sm sm:text-base">
       <span>
         Up To 30% Off{" "}
         <span className="font-medium">| Shop Now</span>

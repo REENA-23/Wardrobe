@@ -38,7 +38,7 @@ export default function Navbar() {
           </div>
 
           {/* LOGO (REGULAR FONT WEIGHT) */}
-          <div className="text-2xl md:text-3xl font-normal tracking-widest">
+          <div className="font-aboreto text-2xl md:text-4xl font-normal tracking-widest">
             LOGO
           </div>
 
