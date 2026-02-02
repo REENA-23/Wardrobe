@@ -1,118 +1,106 @@
 import { useEffect, useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-export default function WearAndShare() {
-  const containerRef = useRef(null);
+export default function Wear() {
+  const sectionRef = useRef(null);
   const trackRef = useRef(null);
 
-  const [isActive, setIsActive] = useState(false);
-  const directionRef = useRef(0); // -1 left, +1 right
-  const speed = 0.6;
+  const [isSectionActive, setIsSectionActive] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
 
-  // animation loop
+  const speed = 1;
+
+  /* ▶ Detect when section is visible */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSectionActive(entry.isIntersecting),
+      { threshold: 0.3 },
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  /* ▶ Card movement */
   useEffect(() => {
     let raf;
 
-    const animate = () => {
-      if (isActive && trackRef.current) {
-        trackRef.current.scrollLeft += directionRef.current * speed;
-
-        // infinite loop
-        const maxScroll =
-          trackRef.current.scrollWidth / 2;
-
-        if (trackRef.current.scrollLeft <= 0) {
-          trackRef.current.scrollLeft = maxScroll;
-        }
-
-        if (trackRef.current.scrollLeft >= maxScroll * 2) {
-          trackRef.current.scrollLeft = maxScroll;
-        }
+    const move = () => {
+      if (isSectionActive && !isCardHovered && trackRef.current) {
+        trackRef.current.scrollLeft += speed;
       }
-
-      raf = requestAnimationFrame(animate);
+      raf = requestAnimationFrame(move);
     };
 
-    animate();
+    move();
     return () => cancelAnimationFrame(raf);
-  }, [isActive]);
-
-  const handleMouseMove = (e) => {
-    const bounds = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - bounds.left;
-    directionRef.current = x < bounds.width / 2 ? -1 : 1;
-  };
+  }, [isSectionActive, isCardHovered]);
 
   return (
-    <section
-      ref={containerRef}
-      onMouseEnter={() => setIsActive(true)}
-      onMouseLeave={() => setIsActive(false)}
-      onMouseMove={handleMouseMove}
-      className="bg-[#F9F6EE] py-20 overflow-hidden"
-    >
+    <section ref={sectionRef} className="bg-[#F2CF74]/10 py-24 overflow-hidden">
       {/* HEADING */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl tracking-widest">
-          <span className="font-aboreto  items-center text-amber-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">WEAR IT</span>{" "}
-          <span className="font-aboreto sm:pl-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">AND SHARE IT</span>
+      <div className="text-center mb-14">
+        <h2 className="tracking-widest">
+          <span className="font-aboreto text-amber-600 text-4xl">WEAR IT</span>{" "}
+          <span className="font-aboreto text-4xl">AND SHARE IT</span>
         </h2>
-        <p className="text-gray-500 mt-2">
-          Lorem ipsum dolor sit amet.
-        </p>
+        <p className="text-gray-500 mt-2">Lorem ipsum dolor sit amet.</p>
       </div>
 
       {/* SLIDER */}
-      <div
-        ref={trackRef}
-        className="flex gap-6 px-10 overflow-hidden scroll-smooth"
-      >
-        {[...cards, ...cards].map((item, i) => (
-          <Card key={i} {...item} />
+      <div ref={trackRef} className="flex gap-8 px-20 overflow-hidden">
+        {cards.map((card, i) => (
+          <Card key={i} {...card} onHover={setIsCardHovered} />
         ))}
       </div>
     </section>
   );
 }
 
-/* CARD DATA */
-const cards = Array.from({ length: 9 }).map((_, i) => ({
+/* CARD DATA (ONLY 9 CARDS) */
+const cards = Array.from({ length: 9 }).map(() => ({
   text: "Impressed by the Quality !!",
   name: "Rena Chaudhari",
   rating: 5,
 }));
 
 /* CARD COMPONENT */
-function Card({ text, name, rating }) {
+function Card({ text, name, rating, onHover }) {
   return (
-    <div className="min-w-[310px] h-[485px] bg-white rounded-xl shadow-md flex flex-col justify-end p-6 transition hover:bg-gray-100">
-      <div className="mb-4 text-center text-xl tracking-widest">••••</div>
+    <div
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover(false)}
+      className="
+    group
+    min-w-[310px] h-[485px]
+    bg-white
+    rounded-xl
+    shadow-md
+    flex flex-col justify-end
+    p-6
+    transition-all duration-300
+    hover:bg-gray-100
+  "
+    >
+      <div className="mb-4 text-center tracking-widest">••••</div>
 
-      <p className="text-sm text-gray-700 mb-2">
-        {text}
-      </p>
+      <p className="text-sm text-gray-700 mb-2">{text}</p>
 
       <div className="flex gap-1 mb-2">
         {Array.from({ length: rating }).map((_, i) => (
-          <FaStar key={i} className="text-yellow-400 text-sm" />
+          <FaStar
+            key={i}
+            className="
+              text-[#F6B73C]
+              group-hover:text-orange-500
+              transition-colors duration-300
+              text-sm
+            "
+          />
         ))}
       </div>
 
-      <p className="text-xs text-gray-400 text-right">
-        – {name}
-      </p>
+      <p className="text-xs text-gray-400 text-right">– {name}</p>
     </div>
   );
 }
-
-      // <div className="pt-6 sm:pt-8 md:pt-10">
-      //   <div className="bg-[#F9F6EE]  opacity-85 min-h-75 sm:min-h-100 md:min-h-125 py-8 sm:py-12 md:py-16">
-      //     <div className=" flex flex-col sm:flex-row justify-center items-center">
-      //       <p className="font-aboreto items-center text-amber-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">WEAR IT</p>
-      //       <p className="font-aboreto sm:pl-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">AND SHARE IT</p>
-      //     </div>
-      //     <div className="flex justify-center items-center text-gray-500 text-sm sm:text-base md:text-lg
-      //               pt-2 sm:pt-3">
-      //       <p>Lorem ispum dolor sit amet.</p>
-      //     </div>
-         
