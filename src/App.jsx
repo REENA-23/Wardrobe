@@ -8,6 +8,7 @@ import Gown from "./pages/Gown";
 import Suitset from "./pages/Suitset";
 import Tops from "./pages/Tops";
 import Lahenga from "./pages/Lahenga";
+import AddToCartPage from "./pages/AddToCartPage";
 
 // icon pages
 import Search from "./home-pages/SearchOverlay";
@@ -31,6 +32,7 @@ export default function App() {
       <Route path="/lahenga" element={<Lahenga />} />
       <Route path="/suitset" element={<Suitset />} />
       <Route path="/tops" element={<Tops />} />
+      
 
       {/* icon pages */}
       <Route path="/search" element={<Search />} />
@@ -46,6 +48,7 @@ export default function App() {
       <Route path="/payment-method/card" element={<PaymentMethodPage />} />
       <Route path="/payment-method/emi" element={<PaymentMethodPage />} />
       <Route path="/payment-method/cod" element={<PaymentMethodPage />} />
+       <Route path="/add-to-cart" element={<AddToCartPage />} />
     </Routes>
   );
 }

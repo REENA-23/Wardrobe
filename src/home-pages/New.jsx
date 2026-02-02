@@ -1,7 +1,10 @@
 import React from "react";
 import { FaExchangeAlt, FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function New() {
+  const navigate = useNavigate(); // ✅ navigation hook
+
   const products = Array(4).fill({
     title: "Chaniya Choli Kids",
     price: "Rs 2000",
@@ -57,7 +60,6 @@ export default function New() {
                     <FaExchangeAlt size={14} />
                   </button>
 
-                  {/* HOVER PILL */}
                   <div className="absolute right-12 top-1/2 -translate-y-1/2
                     bg-black text-white text-xs px-4 py-2 rounded-full
                     whitespace-nowrap opacity-0 group-hover/icon:opacity-100 transition">
@@ -71,7 +73,6 @@ export default function New() {
                     <FaEye size={14} />
                   </button>
 
-                  {/* HOVER PILL */}
                   <div className="absolute right-12 top-1/2 -translate-y-1/2
                     bg-black text-white text-xs px-4 py-2 rounded-full
                     whitespace-nowrap opacity-0 group-hover/icon:opacity-100 transition">
@@ -87,7 +88,12 @@ export default function New() {
                   <span>M</span>
                   <span>L</span>
                 </div>
-                <button className="w-full bg-black text-white py-2 hover:bg-gray-800 transition">
+
+                {/*  NAVIGATE TO ADD TO CART PAGE */}
+                <button
+                  onClick={() => navigate("/add-to-cart")}
+                  className="w-full bg-black text-white py-2 hover:bg-gray-800 transition"
+                >
                   Add to Cart
                 </button>
               </div>
@@ -106,13 +112,12 @@ export default function New() {
                 </span>
               </div>
 
-              {/* COLORS HOVER */}
+              {/* COLORS */}
               <div className="relative inline-block group/colors mt-1">
                 <p className="text-sm text-gray-600 cursor-pointer">
                   3 Colors
                 </p>
 
-                {/* COLOR DOTS */}
                 <div className="absolute left-0 top-6 bg-white shadow rounded px-3 py-2
                   flex gap-2 opacity-0 group-hover/colors:opacity-100 transition">
                   <span className="w-3 h-3 rounded bg-pink-500" />
