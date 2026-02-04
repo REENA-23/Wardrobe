@@ -21,6 +21,7 @@ import CompareProducts from "./product-page/CompareProduct";
 // payment pages
 import Payment from "./payment-pages/Payment";
 import PaymentMethodPage from "./payment-pages/PaymentMethodPage";
+import VirtualTryOnPage from "./product-page/VirtualTryOnPage";
 
 export default function App() {
   return (
@@ -51,6 +52,7 @@ export default function App() {
       <Route path="/payment-method/cod" element={<PaymentMethodPage />} />
        <Route path="/add-to-cart" element={<AddToCartPage />} />
        <Route path="/compare-product" element={<CompareProducts/>}/>
+       <Route path="/virtual-try-on" element={<VirtualTryOnPage />} />
     </Routes>
   );
 }

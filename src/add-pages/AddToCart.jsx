@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { FaHeart, FaShareAlt, FaStar, FaMapMarkerAlt } from "react-icons/fa";
 import SizeChartDrawer from "./SizeChartDrawer";
+import { useNavigate } from "react-router-dom";
+
 
 export default function AddToCart() {
   const [openSizeChart, setOpenSizeChart] = useState(false);
+  const navigate = useNavigate();
 
   const sizes = ["S", "M", "L", "XL", "XXL"];
   const colors = [
@@ -116,7 +119,8 @@ export default function AddToCart() {
           </div>
 
           {/* VIRTUAL TRY ON */}
-          <div className="bg-gradient-to-r from-purple-700 to-purple-500 text-white rounded-lg py-6 text-center mb-5">
+          <div onClick={() => navigate("/virtual-try-on")}
+           className="bg-gradient-to-r from-purple-700 to-purple-500 text-white rounded-lg py-6 text-center mb-5">
             <p className="text-[24px] sm:text-[28px] md:text-[36px] font-aboreto tracking-wide">
               VIRTUAL TRY-ON
             </p>
