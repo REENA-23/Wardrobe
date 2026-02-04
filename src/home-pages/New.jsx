@@ -3,7 +3,7 @@ import { FaExchangeAlt, FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function New() {
-  const navigate = useNavigate(); // ✅ navigation hook
+  const navigate = useNavigate(); 
 
   const products = Array(4).fill({
     title: "Chaniya Choli Kids",

@@ -1,36 +1,49 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 export default function Slider() {
   const sliderRef = useRef(null);
   const intervalRef = useRef(null);
-  const [direction, setDirection] = useState(0); // -1 left | 1 right | 0 idle
+  const [direction, setDirection] = useState(0); // -1 left | 1 right | 0 stop
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  const items = [
+    { name: "Gown", path: "/gown" },
+    { name: "Dresses", path: "/dresses" },
+    { name: "Suit Sets", path: "/Suitset" },
+    { name: "Tops", path: "/tops" },
+    { name: "Co-Ord Sets", path: "/coordset" },
+    { name: "Lehenga", path: "/Lahenga" },
+  ];
+
+  const startScroll = () => {
+    if (intervalRef.current || direction === 0) return;
+
     const slider = sliderRef.current;
     if (!slider) return;
 
-    const startScroll = () => {
-      if (intervalRef.current) return;
+    intervalRef.current = setInterval(() => {
+      slider.scrollLeft += direction * 1;
 
-      intervalRef.current = setInterval(() => {
-        slider.scrollLeft += direction * 0.6;
+      // infinite loop
+      if (slider.scrollLeft <= 0) {
+        slider.scrollLeft = slider.scrollWidth / 2;
+      }
+      if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+        slider.scrollLeft = slider.scrollWidth / 4;
+      }
+    }, 16);
+  };
 
-        // infinite loop
-        if (slider.scrollLeft <= 0) {
-          slider.scrollLeft = slider.scrollWidth / 2;
-        }
-        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
-          slider.scrollLeft = slider.scrollWidth / 4;
-        }
-      }, 16);
-    };
-
-    const stopScroll = () => {
+  const stopScroll = () => {
+    if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
-    };
+    }
+  };
 
+  useEffect(() => {
     if (direction !== 0) startScroll();
     else stopScroll();
 
@@ -41,21 +54,11 @@ export default function Slider() {
     const rect = sliderRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const half = rect.width / 2;
-
     setDirection(x > half ? 1 : -1);
   };
 
-  const items = [
-    "Gown",
-    "Dresses",
-    "Suit Sets",
-    "Tops",
-    "Co-Ord Sets",
-    "Lehenga",
-  ];
-
   return (
-    <section className="bg-[#F9F6EE] pt-10">
+    <section className="bg-[#F9F6EE] pt-10 h-880">
       {/* TITLE */}
       <div className="text-center mb-8 px-4">
         <h2 className="font-playfair text-xl sm:text-2xl md:text-4xl">
@@ -73,13 +76,7 @@ export default function Slider() {
         onMouseEnter={() => setDirection(1)}
         onMouseLeave={() => setDirection(0)}
         onMouseMove={handleMouseMove}
-        className="
-          flex gap-6
-          px-6
-          overflow-hidden
-          cursor-pointer
-          select-none
-        "
+        className="flex gap-6 px-6 overflow-hidden cursor-pointer select-none"
       >
         {[...items, ...items].map((item, i) => (
           <div key={i} className="group flex flex-col items-center shrink-0">
@@ -94,30 +91,33 @@ export default function Slider() {
                 transition
                 duration-300
                 group-hover:bg-gray-300
+                flex items-end justify-center
+                pb-4
               "
             >
-              {/* ARROW */}
-              <div
-                className="
-                  absolute
-                  bottom-4
-                  left-1/2
-                  -translate-x-1/2
-                  opacity-0
-                  group-hover:opacity-100
-                  transition
-                "
-              >
-                <div className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-xl">
-                  <FiArrowUpRight />
-                </div>
-              </div>
+              {/* ARROW BUTTON */}
+              <button
+                type="button"
+                onMouseEnter={() => {
+                  stopScroll();
+                  setDirection(0);
+                }}
+                onMouseLeave={() => {
+                  setDirection(1);
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(item.path);
+                }}
+                className=" w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-xl opacity-0 group-hover:opacity-100 transition " >
+                <FiArrowUpRight />
+              </button>
             </div>
 
             {/* TEXT */}
             <div className="mt-4 text-center">
               <p className="text-lg font-medium group-hover:text-black transition">
-                {item}
+                {item.name}
               </p>
               <p className="text-sm text-gray-500 group-hover:text-gray-700 transition">
                 20 Products

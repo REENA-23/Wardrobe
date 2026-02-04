@@ -1,5 +1,4 @@
 import CartItem from "./CartItem";
-
 import TrendingItems from "./TrendingItems";
 import CartNavbar from "./CartNavbar";
 import Footer from "../home-pages/Footer";

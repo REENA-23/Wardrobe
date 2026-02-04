@@ -58,7 +58,7 @@ export default function CartItem() {
           <span className="line-through text-gray-400">₹60</span>
         </div>
 
-        {/* SIZE (gap removed) */}
+        {/* SIZE */}
         <p className="text-sm mt-1">
           Size : <span className="font-medium">S</span>
         </p>

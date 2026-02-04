@@ -10,7 +10,7 @@ export default function Wear() {
 
   const speed = 1;
 
-  /* ▶ Detect when section is visible */
+  /*  Detect when section is visible */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsSectionActive(entry.isIntersecting),

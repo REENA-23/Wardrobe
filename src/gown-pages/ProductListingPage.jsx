@@ -4,7 +4,6 @@ import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
 /*  PAGE  */
-
 export default function ProductListingPage() {
   const [openFilter, setOpenFilter] = useState(false);
 
@@ -38,7 +37,6 @@ export default function ProductListingPage() {
 }
 
 /*  FILTER SIDEBAR  */
-
 function FilterSidebar({ open, onClose }) {
   return (
     <>
@@ -73,7 +71,6 @@ function FilterSidebar({ open, onClose }) {
 }
 
 /*  FILTER CONTENT */
-
 function FilterContent() {
   return (
     <>
@@ -177,9 +174,8 @@ function ProductSection() {
 }
 
 /*  PRODUCT CARD  */
-
 function ProductCard() {
-  const navigate = useNavigate(); // ✅ FIX
+  const navigate = useNavigate(); 
 
   return (
     <div>
