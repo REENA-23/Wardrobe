@@ -38,7 +38,7 @@ export default function CartNavbar() {
           </div>
 
           {/* CENTER – LOGO */}
-          <div className="text-3xl font-normal tracking-widest">
+          <div className="text-3xl font-aboreto tracking-widest">
             LOGO
           </div>
 

@@ -73,7 +73,7 @@ export default function Hero() {
           "Trending",
         ].map((item, i) => (
           <Link
-            to="/new"
+            to="/gown"
             key={i}
             className="flex flex-col items-center cursor-pointer shrink-0 group"
           >
