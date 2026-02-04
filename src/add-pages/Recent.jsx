@@ -56,26 +56,24 @@ export default function Recent() {
 
                 {/* ADD TO COMPARE */}
                 <div className="relative group/icon">
-                  <button className="w-9 h-9 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100">
+                  <button 
+                  onClick={() => navigate("/compare-product")}
+                  className="relative z-10 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100">
                     <FaExchangeAlt size={14} />
                   </button>
 
-                  <div className="absolute right-12 top-1/2 -translate-y-1/2
-                    bg-black text-white text-xs px-4 py-2 rounded-full
-                    whitespace-nowrap opacity-0 group-hover/icon:opacity-100 transition">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 bg-black text-white flex items-center pr-12 pl-4 text-sm whitespace-nowrap rounded-full origin-right scale-x-0 transition-transform duration-300 group-hover/icon:scale-x-100">
                     Add to Compare
                   </div>
                 </div>
 
                 {/* QUICK VIEW */}
                 <div className="relative group/icon">
-                  <button className="w-9 h-9 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100">
+                  <button className="relative z-10 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100">
                     <FaEye size={14} />
                   </button>
 
-                  <div className="absolute right-12 top-1/2 -translate-y-1/2
-                    bg-black text-white text-xs px-4 py-2 rounded-full
-                    whitespace-nowrap opacity-0 group-hover/icon:opacity-100 transition">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 bg-black text-white flex items-center pr-12 pl-4 text-sm whitespace-nowrap rounded-full origin-right scale-x-0 transition-transform duration-300 group-hover/icon:scale-x-100">
                     Quick View
                   </div>
                 </div>
