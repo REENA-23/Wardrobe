@@ -16,6 +16,7 @@ import Favourite from "./home-pages/WishlistDrawer";
 import Cart from "./cart-pages/Cart";
 import Checkout from "./cart-pages/Checkout";
 import Person from "./home-pages/LoginModal";
+import CompareProducts from "./product-page/CompareProduct";
 
 // payment pages
 import Payment from "./payment-pages/Payment";
@@ -49,6 +50,7 @@ export default function App() {
       <Route path="/payment-method/emi" element={<PaymentMethodPage />} />
       <Route path="/payment-method/cod" element={<PaymentMethodPage />} />
        <Route path="/add-to-cart" element={<AddToCartPage />} />
+       <Route path="/compare-product" element={<CompareProducts/>}/>
     </Routes>
   );
 }

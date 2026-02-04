@@ -9,27 +9,16 @@ export default function ProductListingPage() {
 
   return (
     <div className="min-h-screen bg-[#fafafa]">
-
       {/* MOBILE TOP BAR */}
-      <div className="md:hidden flex items-center justify-between
-        px-4 py-3 bg-white shadow sticky top-0 z-30">
+      <div className="md:hidden flex items-center justify-between px-4 py-3 bg-white shadow sticky top-0 z-30">
         <button onClick={() => setOpenFilter(true)}>
           <FaBars size={20} />
         </button>
-        <p className="text-sm text-gray-600">
-          Showing 3 of 30 products
-        </p>
+        <p className="text-sm text-gray-600">Showing 3 of 30 products</p>
       </div>
 
       <div className="flex gap-10 px-10 py-8 max-md:px-4">
-
-        {/* FILTER */}
-        <FilterSidebar
-          open={openFilter}
-          onClose={() => setOpenFilter(false)}
-        />
-
-        {/* PRODUCTS */}
+        <FilterSidebar open={openFilter} onClose={() => setOpenFilter(false)} />
         <ProductSection />
       </div>
     </div>
@@ -42,9 +31,9 @@ function FilterSidebar({ open, onClose }) {
     <>
       <div
         onClick={onClose}
-        className={`fixed inset-0 bg-black/40 z-40 md:hidden
-        transition-opacity duration-300
-        ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        className={`fixed inset-0 bg-black/40 z-40 md:hidden transition-opacity duration-300 ${
+          open ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
       />
 
       <aside className="hidden md:block w-[300px] bg-white p-6 shadow-sm">
@@ -52,10 +41,9 @@ function FilterSidebar({ open, onClose }) {
       </aside>
 
       <aside
-        className={`fixed bottom-0 left-0 right-0 z-50 bg-white
-        rounded-t-2xl p-6 max-h-[85vh] overflow-y-auto
-        transform transition-transform duration-300 md:hidden
-        ${open ? "translate-y-0" : "translate-y-full"}`}
+        className={`fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-2xl p-6 max-h-[85vh] overflow-y-auto transform transition-transform duration-300 md:hidden ${
+          open ? "translate-y-0" : "translate-y-full"
+        }`}
       >
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-semibold">FILTER BY</h3>
@@ -70,7 +58,6 @@ function FilterSidebar({ open, onClose }) {
   );
 }
 
-/*  FILTER CONTENT */
 function FilterContent() {
   return (
     <>
@@ -99,13 +86,7 @@ function FilterContent() {
 
       <FilterGroup
         title="Colour"
-        items={[
-          "Pink (96)",
-          "Pink (17)",
-          "Pink (15)",
-          "Pink (10)",
-          "Pink (8)",
-        ]}
+        items={["Pink (96)", "Pink (17)", "Pink (15)", "Pink (10)", "Pink (8)"]}
       />
 
       <Divider />
@@ -133,7 +114,7 @@ function FilterGroup({ title, items }) {
       <p className="font-medium mb-3">{title}</p>
       {items.map((item, i) => (
         <label key={i} className="flex items-center gap-3 text-sm mb-2">
-          <input type="checkbox" className="accent-orange-500" />
+          <input type="checkbox" className="accent-orange-500 " />
           {item}
         </label>
       ))}
@@ -146,26 +127,38 @@ function Divider() {
 }
 
 /*  PRODUCT SECTION  */
-
 function ProductSection() {
   return (
     <div className="flex-1">
-
-      <div className="hidden md:flex bg-white rounded-xl shadow-sm
-        px-6 py-4 mb-10 justify-between items-center">
+      <div className="hidden md:flex bg-white rounded-xl shadow-sm px-6 py-4 mb-10 justify-between items-center">
         <p className="text-gray-500">Showing 3 of 30 products</p>
 
-        <select className="border rounded-lg px-4 py-2 text-sm">
-          <option>Best Seller</option>
-          <option>Price: Low to High</option>
-          <option>Price: High to Low</option>
-        </select>
+        <div className="relative inline-block -translate-x-2">
+          <select className="appearance-none border rounded-lg px-4 pr-10 py-2 text-sm h-[40px] w-[250px] bg-white">
+            <option>Best Seller</option>
+            <option>New Arrivals</option>
+            <option>Discount</option>
+            <option>Name</option>
+          </select>
+
+          <svg
+            className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-x-14 gap-y-24
-        max-xl:grid-cols-2
-        max-md:grid-cols-1">
-        {Array.from({ length: 30 }).map((_, i) => (
+      <div className="grid grid-cols-3 gap-x-14 gap-y-24 max-xl:grid-cols-2 max-md:grid-cols-1">
+        {Array.from({ length: 12 }).map((_, i) => (
           <ProductCard key={i} />
         ))}
       </div>
@@ -175,31 +168,67 @@ function ProductSection() {
 
 /*  PRODUCT CARD  */
 function ProductCard() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
     <div>
       <div className="relative h-[400px] bg-gray-100 rounded overflow-hidden group">
-
+        {/* DISCOUNT */}
         <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-3 py-1 rounded-full z-10">
           40% OFF
         </span>
 
-        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition z-10">
-
-          <div className="relative group/icon">
-            <button className="w-9 h-9 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100">
-              <HiOutlineSwitchHorizontal size={14} />
+        {/* RIGHT ICONS (TOP RIGHT like reference) */}
+        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition z-20">
+          {/* ADD TO COMPARE */}
+          <div className="relative group/icon h-10">
+            <button
+              onClick={() => navigate("/compare-product")}
+              className="relative z-10 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100"
+            >
+              <HiOutlineSwitchHorizontal size={16} />
             </button>
+
+            <div
+              onClick={() => navigate("/compare-product")}
+              className="absolute right-0 top-1/2 -translate-y-1/2 h-10 bg-black text-white flex items-center pr-12 pl-4 text-sm whitespace-nowrap rounded-full origin-right scale-x-0 transition-transform duration-300 group-hover/icon:scale-x-100">
+              Add to Compare
+            </div>
           </div>
 
-          <div className="relative group/icon">
-            <button className="w-9 h-9 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100">
-              <FaEye size={14} />
+          {/* QUICK VIEW */}
+          <div className="relative group/icon h-10">
+            {/* SLIDING PILL */}
+            <div
+              className="
+      absolute right-0 top-1/2 -translate-y-1/2
+      h-10
+      bg-black text-white
+      flex items-center
+      pr-12 pl-4
+      text-sm
+      whitespace-nowrap
+      rounded-full
+      origin-right
+      scale-x-0
+      transition-transform duration-300
+      group-hover/icon:scale-x-100
+    "
+            >
+              Quick View
+            </div>
+
+            {/* ICON BUTTON */}
+            <button
+              onClick={() => navigate("/quick-view")}
+              className="relative z-10 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-100"
+            >
+              <FaEye size={16} />
             </button>
           </div>
         </div>
 
+        {/* BOTTOM HOVER BAR */}
         <div className="absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 transition-all duration-300">
           <div className="bg-gray-400 text-white text-sm flex justify-center gap-6 py-2">
             <span>S</span>
@@ -207,7 +236,6 @@ function ProductCard() {
             <span>L</span>
           </div>
 
-          {/* NAVIGATION */}
           <button
             onClick={() => navigate("/add-to-cart")}
             className="w-full bg-black text-white py-2 hover:bg-gray-800 transition"
@@ -217,6 +245,7 @@ function ProductCard() {
         </div>
       </div>
 
+      {/* TEXT BELOW CARD */}
       <div className="mt-6">
         <p className="font-medium text-sm">Chaniya Choli Kids</p>
 
@@ -225,7 +254,19 @@ function ProductCard() {
           <span className="line-through text-gray-400">Rs 4000</span>
         </div>
 
-        <p className="text-sm text-gray-600 mt-1">3 Colors</p>
+        {/* COLORS HOVER (like reference) */}
+        <div className="relative inline-block group/colors mt-1">
+          <p className="text-sm text-gray-600 cursor-pointer">3 Colors</p>
+
+          <div
+            className="absolute left-0 top-6 bg-white shadow rounded px-3 py-2
+            flex gap-2 opacity-0 group-hover/colors:opacity-100 transition"
+          >
+            <span className="w-3 h-3 rounded bg-pink-500" />
+            <span className="w-3 h-3 rounded bg-black" />
+            <span className="w-3 h-3 rounded bg-green-600" />
+          </div>
+        </div>
       </div>
     </div>
   );

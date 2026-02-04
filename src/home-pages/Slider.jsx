@@ -58,9 +58,9 @@ export default function Slider() {
   };
 
   return (
-    <section className="bg-[#F9F6EE] pt-10 h-880">
+    <section className="bg-[#F9F6EE] pt-10 h-[780px]">
       {/* TITLE */}
-      <div className="text-center mb-8 px-4">
+      <div className="text-center mb-8 pt-10">
         <h2 className="font-playfair text-xl sm:text-2xl md:text-4xl">
           <span className="text-orange-500 font-aboreto">CATEGORIES </span>
           <span className="text-gray-800 font-aboreto">YOU MIGHT LIKE</span>
