@@ -9,6 +9,7 @@ import Best from "../home-pages/Best";
 import Collect from "../home-pages/Collect";
 import Top from "../home-pages/Top";
 import Wear from "../home-pages/Wear";
+import EmptyCart from "../cart-pages/EmptyCar";
 
 export default function Home() {
   return (
@@ -23,8 +24,7 @@ export default function Home() {
     <Collect/>
     <Top/>
     <Wear/>
-    <Footer/>
-  
+    <Footer/> 
   </>
   );
 }
